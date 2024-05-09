@@ -32,7 +32,7 @@ public class FiveStarEmoji: UIView {
     
     public private(set) var starRating: Int = 0
     
-    var ratingSelected: StarSelected?
+    public var ratingSelected: StarSelected?
     
     private lazy var stars: [UIImageView] = [ starImageView1,
                                               starImageView2,
