@@ -114,7 +114,7 @@ public class FiveStarEmoji: UIView {
     
     @objc private func starTapped(sender: UITapGestureRecognizer)  {
         self.updateStar(with: sender.view?.tag ?? 0)
-        self.starSelected?(starRating)
+        self.ratingSelected?(starRating)
     }
     
     @objc private func starSwiped(sender: UISwipeGestureRecognizer)  {
@@ -131,7 +131,7 @@ public class FiveStarEmoji: UIView {
             rating = Int(round(ratingPosition / ratingViewWidth * 20))
         }
         self.updateStar(with: rating)
-        self.starSelected?(starRating)
+        self.ratingSelected?(starRating)
     }
     
     private func updateStar(with imageTag: Int) {
