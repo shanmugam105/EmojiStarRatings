@@ -2,7 +2,7 @@ import UIKit
 
 public class FiveStarEmoji: UIView {
     
-    typealias StarSelected = (Int) -> Void
+    public typealias StarSelected = (Int) -> Void
     
     private lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(starSwiped))
     
