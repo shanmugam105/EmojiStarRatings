@@ -1,6 +1,9 @@
 import UIKit
 
 public class FiveStarEmoji: UIView {
+    
+    typealias StarSelected = (Int) -> Void
+    
     private lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(starSwiped))
     
     public var swipable: Bool = true {
@@ -28,6 +31,8 @@ public class FiveStarEmoji: UIView {
     }
     
     public private(set) var starRating: Int = 0
+    
+    var starSelected: StarSelected?
     
     private lazy var stars: [UIImageView] = [ starImageView1,
                                               starImageView2,
@@ -108,7 +113,8 @@ public class FiveStarEmoji: UIView {
     }
     
     @objc private func starTapped(sender: UITapGestureRecognizer)  {
-        updateStar(with: sender.view?.tag ?? 0)
+        self.updateStar(with: sender.view?.tag ?? 0)
+        self.starSelected?(starRating)
     }
     
     @objc private func starSwiped(sender: UISwipeGestureRecognizer)  {
@@ -124,7 +130,8 @@ public class FiveStarEmoji: UIView {
             let ratingPosition = position / CGFloat(starCount)
             rating = Int(round(ratingPosition / ratingViewWidth * 20))
         }
-        updateStar(with: rating)
+        self.updateStar(with: rating)
+        self.starSelected?(starRating)
     }
     
     private func updateStar(with imageTag: Int) {
